@@ -96,8 +96,8 @@ contactRoute.post('/' , (req, res) => {
             return result;
         }
         catch(error)
-        {
-            console.log("error send email: " + error);
+        {   
+            return res.send({result: 'error send email', error: error});
         }
     }
 
@@ -124,11 +124,11 @@ contactRoute.post('/' , (req, res) => {
     {   
         if(userResponse.rejected.length === 0 && adminResponse.rejected.length === 0)
         {
-            res.send({result: 'send'});
+            return res.send({result: 'send'});
         }
         else
         {
-            res.send({result: 'error'});
+            return res.send({result: 'error send response'});
         }
     }
 
@@ -142,9 +142,9 @@ contactRoute.post('/' , (req, res) => {
             sendResponse(userResponse,adminResponse);
             
         }
-        catch(e)
+        catch(error)
         {
-            console.log(e);
+            return res.send({result: 'error sending email', error: error});
         }
     }
 
