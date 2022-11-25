@@ -113,7 +113,7 @@ contactRoute.post('/' , (req, res) => {
             [
                 {
                     filename: 'email.png',
-                    path: '../../public/images/email.png',
+                    path: '/public/images/email.png',
                     cid: 'email'
                 }
             ]
