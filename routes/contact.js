@@ -97,7 +97,7 @@ contactRoute.post('/' , (req, res) => {
         }
         catch(error)
         {   
-            return res.send({result: 'error send email', error: error}); // fix error here - error ocurred only in vercel env
+            return res.send({result: 'error send email', error: error, path: __dirname}); // fix error here - error ocurred only in vercel env
         }
     }
 
