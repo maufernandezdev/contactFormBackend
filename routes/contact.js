@@ -25,7 +25,6 @@ contactRoute.post('/' , (req, res) => {
             <div style="background-color: #fff; padding:1.5em; width:550px; text-align:center; color:#142032; margin:0px auto;border: 1px solid #ccc;">
                 <p style="font-size: 1.2em">¡Hola <span style="font-weight: 700;">${name}</span>!</p> 
                 <p style="font-size: 1em">¡Gracias por tu mensaje! <span style='font-size:17px;'>&#128588;</span></p>
-                <img style="width: 150px; margin: 1em;" src="cid:email"/>'
                 <p style="font-size: 1em">Recibiras mi respuesta pronto!</p>
                 <p style="font-size: 1em">¡Saludos! <span style='font-size:17px;'>&#128640;</span></p>
                 <p style="font-weight: 550; font-size: 1.1em; margin-top: 2.5em;">Mauricio Fernandez <br>Front End Software Developer</p>
@@ -97,7 +96,7 @@ contactRoute.post('/' , (req, res) => {
         }
         catch(error)
         {   
-            return res.send({result: 'error send email', error: error});
+            return res.send({result: 'error send email', error: error}); // fix error here - error ocurred only in vercel env
         }
     }
 
@@ -109,14 +108,14 @@ contactRoute.post('/' , (req, res) => {
             to: email,
             subject:"Mauricio Fernandez sitio web 🤓",
             html: contentHTML,
-            attachments:
-            [
-                {
-                    filename: 'email.png',
-                    path: './public/images/email.png',
-                    cid: 'email'
-                }
-            ]
+            // attachments:
+            // [
+            //     {
+            //         filename: 'email.png',
+            //         path: './public/images/email.png',
+            //         cid: 'email'
+            //     }
+            // ]
         }
     };
 
