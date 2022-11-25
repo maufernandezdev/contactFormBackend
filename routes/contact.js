@@ -4,7 +4,7 @@ contactRoute.use(express.json());
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 require('dotenv').config();
-
+const path = require('path');
 
 contactRoute.post('/' , (req, res) => {
     
@@ -113,7 +113,7 @@ contactRoute.post('/' , (req, res) => {
             [
                 {
                     filename: 'email.png',
-                    path: '/public/images/email.png',
+                    path: path.join(__dirname, '../public/images/email.png'),
                     cid: 'email'
                 }
             ]
