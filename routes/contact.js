@@ -27,7 +27,7 @@ contactRoute.post('/' , (req, res) => {
                 <img style="width: 150px; margin: 1em;" src="cid:email"/>
                 <p style="font-size: 1em">Recibiras mi respuesta pronto!</p>
                 <p style="font-size: 1em">¡Saludos! <span style='font-size:17px;'>&#128640;</span></p>
-                <p style="font-weight: 550; font-size: 1.1em; margin-top: 2.5em;">Mauricio Fernandez <br>Front End Software Developer</p>
+                <p style="font-weight: 550; font-size: 1.1em; margin-top: 2.5em;">Mauricio Fernandez <br>Software Developer</p>
             </div>
         </section>
     </body>
@@ -77,7 +77,7 @@ contactRoute.post('/' , (req, res) => {
         }
         catch(error)
         {
-            res.send({result:'access token error', error: error});
+            return res.status(400).send({result:'access token error', error: error});
         }
     }
 
@@ -103,7 +103,7 @@ contactRoute.post('/' , (req, res) => {
         }
         catch(error)
         {   
-            return res.send({result: 'error send email', error: error, path: __dirname});
+            return res.status(400).send({result: 'error send email', error: error, path: __dirname});
         }
     }
 
@@ -130,11 +130,11 @@ contactRoute.post('/' , (req, res) => {
     {   
         if(userResponse.rejected.length === 0 && adminResponse.rejected.length === 0)
         {
-            return res.send({result: 'send'});
+            return res.status(200).send({result: 'send'});
         }
         else
         {
-            return res.send({result: 'error send response'});
+            return res.status(400).send({result: 'error send response'});
         }
     }
 
@@ -150,7 +150,7 @@ contactRoute.post('/' , (req, res) => {
         }
         catch(error)
         {
-            return res.send({result: 'error sending email', error: error});
+            return res.status(400).send({result: 'error sending email', error: error});
         }
     }
 
