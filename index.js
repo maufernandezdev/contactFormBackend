@@ -5,7 +5,6 @@ app.use(cors());
 const port = process.env.PORT || 9001;
 const path = require('path');
 app.use(express.static(path.join(__dirname, './public')));
-// app.use(express.static(__dirname + './public'));
 app.use('/api/v1/contact', require('./routes/contact'));
 
 app.get('/', (req, res) => {

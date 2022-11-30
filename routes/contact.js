@@ -8,7 +8,6 @@ const path = require('path');
 
 contactRoute.post('/' , (req, res) => {
     
-    console.log(req.body);
     const { name, email , message} = req.body;
     const adminEmail = process.env.ADMIN_EMAIL;
     const contentHTML = `
@@ -70,9 +69,16 @@ contactRoute.post('/' , (req, res) => {
     });
 
     const getAccessToken = async () =>
-    {
-        const ACCESS_TOKEN = await oAuth2Client.getAccessToken();
-        return ACCESS_TOKEN;
+    {   
+        try
+        {
+            const ACCESS_TOKEN = await oAuth2Client.getAccessToken();
+            return ACCESS_TOKEN;
+        }
+        catch(error)
+        {
+            res.send({type:'access token error', error: error});
+        }
     }
 
     const ACCESS_TOKEN  = getAccessToken();
@@ -84,7 +90,7 @@ contactRoute.post('/' , (req, res) => {
             clientId: CLIENT_ID,
             clientSecret : CLIENT_SECRET,
             refreshToken: REFRESH_TOKEN,
-            accessToken: ACCESS_TOKEN
+            accessToken: ACCESS_TOKEN,
         }
     });
 
@@ -97,7 +103,7 @@ contactRoute.post('/' , (req, res) => {
         }
         catch(error)
         {   
-            return res.send({result: 'error send email', error: error, path: __dirname}); // fix error here - error ocurred only in vercel env
+            return res.send({result: 'error send email', error: error, path: __dirname});
         }
     }
 
