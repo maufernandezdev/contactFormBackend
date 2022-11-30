@@ -77,7 +77,7 @@ contactRoute.post('/' , (req, res) => {
         }
         catch(error)
         {
-            res.send({type:'access token error', error: error});
+            res.send({result:'access token error', error: error});
         }
     }
 
